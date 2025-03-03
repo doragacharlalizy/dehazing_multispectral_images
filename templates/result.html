@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dehazed Image</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between; /* Align items with space between */
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .image-container {
+            width: 48%; /* Set width for image container */
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .image-container h2 {
+            margin: 0;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #ddd;
+            border-radius: 8px 8px 0 0;
+        }
+        .image-container img {
+            width: 100%;
+            border-radius: 0 0 8px 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <h2>Input Image</h2>
+            {% if input_image.endswith('.tif') %}
+                <img src="{{ url_for('converted_image', filename=input_image) }}" alt="Input Image">
+            {% else %}
+                <img src="{{ url_for('uploaded_file', filename=input_image) }}" alt="Input Image">
+            {% endif %}
+        </div>
+        <div class="image-container">
+            <h2>Dehazed Image</h2>
+            <img src="{{ url_for('result_file', filename=result_image) }}" alt="Dehazed Image">
+        </div>
+    </div>
+</body>
+</html>
